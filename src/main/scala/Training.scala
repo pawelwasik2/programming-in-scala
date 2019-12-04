@@ -7,5 +7,12 @@ object Training extends App{
   //summary: if a method takes only one parameter you can call it without dot or parentheses
   //println(1 + 2)
   //println((1).+(2))
+
+  //So greetStrings(i) gets transformed into greetStrings.apply(i)
+  //val arr = new Array[String](3)
+  //arr(0) = "Zero" //equals to arr.update(0, "Zero")
+  //print(arr(0)) //equals to print(arr.apply(0))
+
+
 }
 
