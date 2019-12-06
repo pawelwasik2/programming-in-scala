@@ -62,8 +62,14 @@ object Training extends App{
   jetSet += "Lear"
   println(jetSet.contains("Cessna"))
 
+  //todo trait? set and hashset difference?
 
    */
+  //import scala.collection.immutable
+
+  var movieSet = Set("Hitch", "Poltergeist")
+  movieSet += "Shrek"
+  println(movieSet)
 
 
 
