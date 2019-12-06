@@ -65,12 +65,53 @@ object Training extends App{
   //todo trait? set and hashset difference?
 
    */
-  //import scala.collection.immutable
 
-  var movieSet = Set("Hitch", "Poltergeist")
+  /*
+  // oki tutaj jest cos takiego, ze przy val immutable nie mozna dac += a przy val mutable mozna
+
+  import scala.collection.immutable
+
+  val movieSet = immutable.Set("Hitch", "Poltergeist")
   movieSet += "Shrek"
-  println(movieSet)
+  println(movieSet)*/
 
+  //https://4programmers.net/Forum/Inne/333704-scala_niezrozumienie_pewnej_kwestii_w_kolekcjach_set
+
+  /**
+    Ogolnie to kwestia setow i hashsetow sie troche wyjasnila na tym forum, .getClass zwraca Set$Set4 na <5 a >=5 HashSet
+    Kiedy indziej ogarne
+
+    Mozna powiedziec ze Set to taki glowny typ, a HashSet czy Set$Set3 to wynik metody .toString wywalonej na obiekcie typu Set
+    Nie wiem do konca o co dokladnie chodzi, pewnie ogarne za jakis czas
+  */
+
+  /*
+  import scala.io.Source
+
+   def widthOfLength(s: String) = s.length.toString.length
+
+  if (args.length > 0) {
+
+  val lines = Source.fromFile(args(0)).getLines().toList
+
+  val longestLine = lines.reduceLeft(
+  (a, b) => if (a.length > b.length) a else b
+   )
+  val maxWidth = widthOfLength(longestLine)
+
+  for (line <- lines) {
+   val numSpaces = maxWidth - widthOfLength(line)
+  val padding = " " * numSpaces
+   println(padding + line.length + " | " + line)
+   }
+   }
+   else
+  Console.err.println("Please enter filename")
+    */
+
+  /**
+    * CHAPTER 4
+    * */
 
 
 }
