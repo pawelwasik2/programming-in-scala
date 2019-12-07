@@ -109,6 +109,9 @@ object Training extends App{
   Console.err.println("Please enter filename")
     */
 
+  //PROGRAMOWANIE FUNKCYJNE:
+  //Prefer vals, immutable objects, and methods without side effects.
+
   /**
     * CHAPTER 4
     * */
