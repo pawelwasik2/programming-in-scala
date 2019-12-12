@@ -116,6 +116,55 @@ object Training extends App{
     * CHAPTER 4
     **/
 
+  //public is default scala access level in fields in classes
+  //scala function parameters are vals !!
+  //A method that is executed only for its side effects is known as a procedure
+  class ChecksumAccumulator {
+      private var sum = 0
+      def add(b: Byte): Unit = sum += b
+      def checksum(): Int = ~(sum & 0xFF) + 1
+
+      object ChecksumAccumulator {
+          import scala.collection.mutable
+          private val cache = mutable.Map.empty[String, Int]
+          def calculate(s: String): Int =
+              if (cache.contains(s))
+                  cache(s)
+              else {
+                  val acc = new ChecksumAccumulator
+                  for (c <- s)
+                      acc.add(c.toByte)
+                  val cs = acc.checksum()
+                  cache += (s -> cs)
+                  cs
+              }
+      }
+
+  }
+
+    //class is called companion class of the singleton object
+    //companion object - same name as the class
+
+    val acc = new ChecksumAccumulator
+    acc.add(2)
+    println(acc.checksum())
+
+    //Line ending is treated as a semicolon ";" unless:
+    //The line in question ends in a word that would not be legal as the end of a statement, such as a period or an infix operator.
+    //The next line begins with a word that cannot start a statement.
+    //The line ends while inside parentheses (...) or brackets [...], because these cannot contain multiple statements anyway.
+
+    //singleton object is a home for static methods
+    //One difference between classes and singleton objects is that singleton objects cannot take parameters, whereas classes can
+
+    //entry point for application - astandalone object with a main method
+
+    //Scala diff Java - u can name file as u want, dont need to name file as a public class
+
+    //adding "extend App" trait u dont need to write a main method in astandalone object to run your app
+
+
+
 
 }
 
