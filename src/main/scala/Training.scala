@@ -163,8 +163,110 @@ object Training extends App{
 
     //adding "extend App" trait u dont need to write a main method in astandalone object to run your app
 
+  /**
+    * CHAPTER 5
+    **/
 
+    //symbol value
+  val s = 'symbol
+  s.name
 
+  //mozna pisac w unicode
+  //rzutowanie na zmienna z pierwsza jej literą na koncu np bedzie typem double:
+  val i = 213d
+  println("""|Welcome to Ultamix 3000.
+             |Type "HELP" for help.""".stripMargin)
+  val escapes = "\\\"\'"
+  //scala> val B\u0041\u0044 = 1
+  // BAD: Int = 1
+
+  //string
+  val name = "Pawel"
+  println(s"Hello, $name!")
+
+  val strS = s"The answer is ${6 * 7}."
+  val strSS = s"No\\\\escape!"//prints: res1: String = No\\escape!
+  val strRAW = raw"No\\\\escape!" //prints: No\\\\escape!
+  val pi = "Pi" //pi: String = Pi
+  f"$pi is approximately ${math.Pi}%.8f." // String = Pi is approximately 3.14159265.
+
+  //operator notation: 1 + 2 means (1).+(2)
+  //u can use ANY method in operator notation like:
+  val str = "hello world"
+  println(str indexOf 3)
+  println(str indexOf 'o')
+  //as here, it works. Any method can be an operator, precise: INFIX OPERATOR - something before and sth after operator
+  //Prefix operator: -2.0 (mehtod "-" invoked on "2.0"):
+  (2.0).unary_-
+  (0xFF).unary_~
+  //Postfix operator: str.toLoweCase:
+  str toLowerCase
+
+  //example of &&. PL: lewa strona wykonuje sie zawsze, poniewaz od niej zalezy jaki będzie wynik. Jeśli false, to wynikiem bedzie
+  //false no i oczywiscie druga strona sie nie wykona np:
+  def salt() = { println("salt"); false }
+  def pepper() = { println("pepper"); true }
+  pepper() && salt() //wypisze sie pepper i salt
+  salt() && pepper() //wypisze sie tylko salt
+  //If you want to evaluate the right hand side no matter what, use & and | instead. The & method performs
+  //a logical-and operation
+  salt() & pepper() //wypisz sie salt i pepper
+
+  //Objects equality
+  //you can compare objects as lists, basic types, even different types
+  ("he" + "llo") == "hello" //true
+  //cause scala's "==" compare what's inside objects not if the objects are the same
+  //is scala's == the same as java's equals() method?
+
+  //KOLEJNOSC DZIALAN
+  // If the method name starts with a*, for example, it will have a higher precedence than
+  //a method that starts with a +. Thus2 + 2 * 7 will be evaluated as 2 + (2 * 7). Similarly, a ++
+  //+ b *** c (in which a, b, and c are variables, and +++ and *** are methods) will be evaluated a ++
+  //+ (b *** c), because the *** method has a higher precedence than the +++ method.
+  //PL: W skrocie, w scali nie ma operatorow (sa tylko metody zapisane w postaci operatorow),
+  //Pierwsza litera nazwy metody decyduje o tym ktora zostanie wykonana wczesniej
+  //QUEUE:
+  //(all other special characters)
+  //* / %
+  //+ -
+  //:
+  //= !
+  //< >
+  //&
+  //^
+  //|
+  //(all letters)
+  //(all assignment operators)
+
+  //If an operator ends in an equals character (=), and the operator is not one of the
+  //comparison operators <=, >=, ==, or !=, then the precedence of the operator is the same as that of
+  //simple assignment (=)
+
+  // any method that ends in a `:' character is invoked on its right operand
+  //So a * b yields a.*(b), but a ::: byields b.:::(a).
+
+  //Table 5.4 - Some rich operations
+  //Code Result
+  //0 max 5 5
+  //0 min 5 0
+  //-2.7 abs 2.7
+  //-2.7 round -3L
+  //1.5 isInfinity false
+  //(1.0 / 0) isInfinity true
+  //4 to 6 Range(4, 5, 6)
+  //"bob" capitalize "Bob"
+  //"robert" drop 2 "bert"
+  //Table 5.5 - Rich wrapper classes
+  //Basic type Rich wrapper
+  //Byte scala.runtime.RichByte
+  //Short scala.runtime.RichShort
+  //Int scala.runtime.RichInt
+  //Long scala.runtime.RichLong
+  //Char scala.runtime.RichChar
+  //Float scala.runtime.RichFloat
+  //Double scala.runtime.RichDouble
+  //Boolean scala.runtime.RichBoolean
+  //String scala.collection.immutable.StringOps
 
 }
 
