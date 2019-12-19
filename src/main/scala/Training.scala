@@ -115,7 +115,7 @@ object Training extends App{
   /**
     * CHAPTER 4
     **/
-
+/*
   //public is default scala access level in fields in classes
   //scala function parameters are vals !!
   //A method that is executed only for its side effects is known as a procedure
@@ -162,13 +162,13 @@ object Training extends App{
     //Scala diff Java - u can name file as u want, dont need to name file as a public class
 
     //adding "extend App" trait u dont need to write a main method in astandalone object to run your app
-
+*/
   /**
     * CHAPTER 5
     **/
 
     //symbol value
-  val s = 'symbol
+  /*val s = 'symbol
   s.name
 
   //mozna pisac w unicode
@@ -266,7 +266,115 @@ object Training extends App{
   //Float scala.runtime.RichFloat
   //Double scala.runtime.RichDouble
   //Boolean scala.runtime.RichBoolean
-  //String scala.collection.immutable.StringOps
+  //String scala.collection.immutable.StringOps*/
+
+   */
+
+  /**
+    * CHAPTER 7
+    * BUILD-IN CONTROL STRUCTURES
+    **/
+
+  /*val value =
+    if(1==1) "test"
+    else "passed"
+  //if returns a value
+
+  //scala> val hi = ()
+  //hi: Unit = ()
+  //Unit is a type what loops (while, do-while) returns. It perfectly shows how differ is Java's void than Unit
+
+  //functional languages has expressions, no loops
+  //Scala compiler will not infer semicolons while inside parentheses.
+
+  val values =
+    for{
+      i <- 1 to 10
+      if i==5
+      j <- 1 to 20
+      if i + j == 10
+    }yield "done"
+  println(values)
+  //example of nester for expression, idk why return Vector(done),
+
+  //closing files in finally block
+  def urlFor(path: String) =
+    try {
+      new URL(path)
+    } catch {
+      case e: MalformedURLException =>
+        new URL("http://www.scala-lang.org")
+    }
+  //scala's try catch can return value
+  //finally should be treated as a cleaner (closing resources or sth like that)
+
+  def f(): Int = try return 1 finally return 2
+  //calling f() results in 2. By contrast, given:
+  def g(): Int = try 1 finally 2
+  //calling g() iresult is 1
+  //that is when finally clause contains explicit return statement, so its overrule other returns
+
+  val firstArg = "JD"
+  firstArg match {
+    case "salt" => println("pepper")
+    case "chips" => println("salsa")
+    case "eggs" => println("bacon")
+    case _ => println("huh?")
+  }
+
+  //IMPERATIVE
+  def printMultiTable() = {
+    var i = 1
+    // only i in scope here
+    while (i <= 10) {
+      var j = 1
+      // both i and j in scope here
+      while (j <= 10) {
+        val prod = (i * j).toString
+        // i, j, and prod in scope here
+        var k = prod.length
+        // i, j, prod, and k in scope here
+        while (k < 4) {
+          print(" ")
+          k += 1
+        }
+        print(prod)
+        j += 1
+      }
+      // i and j still in scope; prod and k out of scope
+      println()
+      i += 1
+    }
+    // i still in scope; j, prod, and k out of scope
+  }
+
+  //FUNCTIONAL
+  // Returns a row as a sequence
+  def makeRowSeq(row: Int) =
+    for (col <- 1 to 10) yield {
+      val prod = (row * col).toString
+      val padding = " " * (4 - prod.length)
+      padding + prod
+    }
+  // Returns a row as a string
+  def makeRow(row: Int) = makeRowSeq(row).mkString
+  // Returns table as a string with one row per line
+  def multiTable() = {
+    val tableSeq = // a sequence of row strings
+      for (row <- 1 to 10)
+        yield makeRow(row)
+
+    tableSeq.mkString("\n")
+  }
+
+  //Podsumowując ten rozdzial, troche funkcyjnego programowania, w którym chodzi o to zeby nie miec efektow ubocznych jak println,
+  //zeby funkje zwracaly cos, zeby byly podzielone na helper functions, ktore tworza kod bardziej czytelnym, */
+
+  /**
+    * CHAPTER 8
+    * FUNCTIONS AND CLOSUER
+    **/
+
 
 }
 
