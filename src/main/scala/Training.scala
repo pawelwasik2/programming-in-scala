@@ -375,6 +375,125 @@ object Training extends App{
     * FUNCTIONS AND CLOSUER
     **/
 
+   //Functional programming style: programs should be decomposed into many small functions that each do a well-defined task
+    //So the best way to write a large ammount of small functions is to write them inside other functions (local functions)
+    //Local functions cac access wariable of it's enclosing functions:
+  import scala.io.Source
+    object LongLines {
+
+        def processFile(filename: String, width: Int) = {
+
+            def processLine(line: String) = {
+                if (line.length > width)
+                    println(filename + ": " + line.trim)
+            }
+
+            val source = Source.fromFile(filename)
+            for (line <- source.getLines())
+                processLine(line)
+        }
+    }
+
+    //funkcje ktore przyjuja funkcje jako parametry lub ktorych wynik jest funkcja, mogą tak robić ponieważ:
+  //W scali funkcje są wartosciami pierwszej kategorii (first-class values)
+
+  var increase = (x: Int) => x + 1
+  increase(10)
+
+    //As forech is element of all collections we can pass to it a function as an argument and invokes the function on all elements:
+    val someNumbers = List(-11, -10, -5, 0, 5, 10)
+    someNumbers.foreach((x: Int) => println(x)) // or shorter: someNumbers.foreach(x => println(x))
+    //-11
+    // -10
+    // -5
+    // 0
+    // 5
+
+    //another way is underscore which means (every wariable in set)
+    someNumbers.foreach(_ => println)
+    someNumbers.filter(_ > 0)
+    //You can think of the underscore as a "blank" in the expression that needs to be "filled in." This blank
+    //will be filled in with an argument to the function each time the function is invoked
+    //First underscore represent first parameter, second - second, and so on..
+
+    someNumbers.foreach(println _)
+    //Thus, the underscore in this case is not a placeholder for a single parameter. It is a placeholder for an
+    //entire parameter list
+
+    //partially applied functions
+    def sum(a: Int, b: Int, c: Int) = a + b + c
+    val a = sum _
+    a(1, 2, 3)
+    //res11: Int = 6
+    val b = sum(1, _: Int, 3)
+    b(2)
+    // res13: Int = 6
+    // Since only
+    //one argument is missing, the Scala compiler generates a new FUNCTION CLASS whose apply method takes one argument.
+    someNumbers.foreach(println)
+    //This upper example is last form is allowed only in places where a function is required, such as the invocation
+    //offoreach in this example. The compiler knows a function is required in this case,
+    //becauseforeach requires that a function be passed as an argument. In situations where a function is not
+    //required, attempting to use this form will cause a compilation error. Here's an example:
+    //scala> val c = sum
+    // <console>:8: error: missing arguments for method sum;
+    // follow this method with `_' if you want to treat it as a
+    // partially applied function
+    // val c = sum
+    // ^
+    // scala> val d = sum _
+    // d: (Int, Int, Int) => Int = <function3>
+    //
+    // scala> d(10, 20, 30)
+    // res14: Int = 60
+
+    //CLOSURES
+
+    var more = 1
+    val addMore = (x: Int) => x + more
+    addMore(10)
+    // res16: Int = 11
+    more = 9999
+    addMore(10)
+    //res17: Int = 10009
+
+    def makeIncreaser(more: Int) = (x: Int) => x + more
+    val inc1 = makeIncreaser(1)
+    val inc9999 = makeIncreaser(9999)
+    inc1(10) //res20: Int = 11
+    inc9999(10) //res21: Int = 10009
+
+    //reapeted parameter
+    def echo(args: String*) =
+        for (arg <- args) println(arg)
+    echo("one") //one
+    echo("hello", "world!")//hello world!
+    //echo(arr: _*) //to pass an array to fun, it tells the compiler to pass every argument from array as an other
+
+    def speed(distance: Float, time: Float): Float =
+        distance / time
+    speed(time = 10, distance = 100)
+
+    //default value
+    def printTime(out: java.io.PrintStream = Console.out) =
+        out.println("time = " + System.currentTimeMillis())
+    printTime()
+    printTime(Console.err) //overridew default argument?
+
+    //TAIL RECURSION
+    //The Scala compiler detects tail recursion and replaces it with
+    //a jump back to the beginning of the function, after updating the function parameters with the new values
+
+    /**
+      * CHAPTER 9
+      * FUNCTIONS AND CLOSUER
+      **/
+
+
+
+
+
+
 
 }
 
