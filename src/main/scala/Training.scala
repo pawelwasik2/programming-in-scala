@@ -428,12 +428,11 @@ object Training extends App{
     val b = sum(1, _: Int, 3)
     b(2)
     // res13: Int = 6
-    // Since only
-    //one argument is missing, the Scala compiler generates a new FUNCTION CLASS whose apply method takes one argument.
+    // Since only one argument is missing, the Scala compiler generates a new FUNCTION CLASS whose apply method takes one argument.
     someNumbers.foreach(println)
     //This upper example is last form is allowed only in places where a function is required, such as the invocation
-    //offoreach in this example. The compiler knows a function is required in this case,
-    //becauseforeach requires that a function be passed as an argument. In situations where a function is not
+    //of foreach in this example. The compiler knows a function is required in this case,
+    //because foreach requires that a function be passed as an argument. In situations where a function is not
     //required, attempting to use this form will cause a compilation error. Here's an example:
     //scala> val c = sum
     // <console>:8: error: missing arguments for method sum;
@@ -486,11 +485,29 @@ object Training extends App{
 
     /**
       * CHAPTER 9
-      * FUNCTIONS AND CLOSUER
+      * CONTROL ABSTRACTION
       **/
 
+    object FileMatcher {
+        private def filesHere = (new java.io.File(".")).listFiles
 
+        private def filesMatching(matcher: String => Boolean) =
+            for (file <- filesHere; if matcher(file.getName))
+                yield file
 
+        def filesEnding(query: String) =
+            filesMatching(_.endsWith(query))//mozna to zapisac jako (file.getName: String) => (file.getName).endWith(query)
+                                            //taki skrocony zapis jest mozliwy bo kompilator wie, ze wymagana jest tu fuknkcja?? chyba
+                                            //
+
+        def filesContaining(query: String) =
+            filesMatching(_.contains(query))
+
+        def filesRegex(query: String) =
+            filesMatching(_.matches(query))
+    }
+    //PL: jako argument do funkcji filesMatching przekazujemy funkcje - matcher. Z jednego brakującego elementu oblicza
+    //czy spelnia warunki zwracając Boolean
 
 
 
