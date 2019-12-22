@@ -510,6 +510,45 @@ object Training extends App{
     //czy spelnia warunki zwracając Boolean
 
 
+  //imperative way to write a function to check in collection for negative number
+  def containsNeg(nums: List[Int]): Boolean = {
+    var exists = false
+    for (num <- nums)
+      if (num < 0)
+        exists = true
+    exists
+  }
+
+  //and the same function in functional style using high-order functions
+  def containsNegFP(nums: List[Int]) = nums.exists(_ < 0)
+
+  //CURRYING
+  //for creagting control abstraction that look like originqal scala library function is needed to use currying
+  //Any time you find a control pattern repeated in multiple parts of your code, you should think about
+  //implementing it as a new control structure
+  //currying is invoking function which needs 2 or more parameters with separate parentheses,
+  //to make your new control structure to looks like more like built-in you need to use curly braces for
+  //arguments which are functions:
+  def withPrintWriter(file: File)(op: PrintWriter => Unit) = {
+    val writer = new PrintWriter(file)
+    try {
+      op(writer)
+    } finally {
+      writer.close()
+    }
+  }
+
+  val file = new File("date.txt")
+
+  withPrintWriter(file) { writer =>
+    writer.println(new java.util.Date)
+  }
+
+  //in scala you can invode function with argument in curly braces only when this function needs only one argument:
+  println("siema")
+  println{"hey"}
+
+
 
 
 }
