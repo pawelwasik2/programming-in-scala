@@ -548,6 +548,27 @@ object Training extends App{
   println("siema")
   println{"hey"}
 
+  //BY-NAME PARAMETERS
+  //By-name parameters exist precisely so that you can do this. To make a by-name parameter, you give the
+  //parameter a type starting with => instead of () =>. For example, you could
+  //changemyAssert's predicate parameter into a by-name parameter by changing its type, "() => Boolean", into "=> Boolean".
+  var assertionsEnabled = true
+  def myAssert(predicate: () => Boolean) =
+    if (assertionsEnabled && !predicate())
+      throw new AssertionError
+  myAssert(() => 5 > 3)
+
+  def byNameAssert(predicate: => Boolean) =
+    if (assertionsEnabled && !predicate)
+      throw new AssertionError
+  byNameAssert(5 > 3)
+
+    //Funkcje byNameAssert mozemy zapisac rownież jako (predicate: Boolean), ale
+  //roznica wtedy jest taka, ze 5 > 3 zyielduje wynik i z takim wynikiem wywoła funkcje byNameAssert, natomiast
+  //gdy uzyjemy formy => Boolean, 5 > 3 wywola sie dopiero w linijcie !predicate()
+
+
+
 
 
 
