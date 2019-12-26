@@ -544,7 +544,7 @@ object Training extends App{
     writer.println(new java.util.Date)
   }
 
-  //in scala you can invode function with argument in curly braces only when this function needs only one argument:
+  //in scala you can invoke function with argument in curly braces only when this function needs only one argument:
   println("siema")
   println{"hey"}
 
@@ -563,7 +563,7 @@ object Training extends App{
       throw new AssertionError
   byNameAssert(5 > 3)
 
-    //Funkcje byNameAssert mozemy zapisac rownież jako (predicate: Boolean), ale
+  //Funkcje byNameAssert mozemy zapisac rownież jako (predicate: Boolean), ale
   //roznica wtedy jest taka, ze 5 > 3 zyielduje wynik i z takim wynikiem wywoła funkcje byNameAssert, natomiast
   //gdy uzyjemy formy => Boolean, 5 > 3 wywola sie dopiero w linijcie !predicate()
 
