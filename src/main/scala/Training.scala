@@ -375,7 +375,7 @@ object Training extends App{
     * FUNCTIONS AND CLOSUER
     **/
 
-   //Functional programming style: programs should be decomposed into many small functions that each do a well-defined task
+   /*//Functional programming style: programs should be decomposed into many small functions that each do a well-defined task
     //So the best way to write a large ammount of small functions is to write them inside other functions (local functions)
     //Local functions cac access wariable of it's enclosing functions:
   import scala.io.Source
@@ -481,14 +481,14 @@ object Training extends App{
 
     //TAIL RECURSION
     //The Scala compiler detects tail recursion and replaces it with
-    //a jump back to the beginning of the function, after updating the function parameters with the new values
+    //a jump back to the beginning of the function, after updating the function parameters with the new values*/
 
     /**
       * CHAPTER 9
       * CONTROL ABSTRACTION
       **/
 
-    object FileMatcher {
+    /*object FileMatcher {
         private def filesHere = (new java.io.File(".")).listFiles
 
         private def filesMatching(matcher: String => Boolean) =
@@ -565,7 +565,73 @@ object Training extends App{
 
   //Funkcje byNameAssert mozemy zapisac rownież jako (predicate: Boolean), ale
   //roznica wtedy jest taka, ze 5 > 3 zyielduje wynik i z takim wynikiem wywoła funkcje byNameAssert, natomiast
-  //gdy uzyjemy formy => Boolean, 5 > 3 wywola sie dopiero w linijcie !predicate()
+  //gdy uzyjemy formy => Boolean, 5 > 3 wywola sie dopiero w linijcie !predicate()*/
+
+  /**
+    * CHAPTER 10
+    * Composition and Inheritance
+    **/
+
+  //Composition means one class holds a reference to another, using the referenced class to help it fulfill its mission.
+    // Inheritance is the superclass/subclass relationship.
+    //
+    /**
+      * CHAPTER 11
+      * Scala's Hierarchy
+      **/
+
+    //just as Any is a superclass of every other class, Nothing is a subclass of every other class
+    //Any contains:
+    final def ==(that: Any): Boolean
+    final def !=(that: Any): Boolean
+    def equals(that: Any): Boolean
+    def ##: Int
+    def hashCode: Int
+    def toString: String
+    // Unit = ()
+    //ll value classes are subtypes of scala.AnyVal, but they do not
+    //subclass each other. Instead there are implicit conversions between different value class types. For
+    //example, an instance of class scala.Int is automatically widened (by an implicit conversion) to an
+    //instance of class scala.Long when required.
+    //Implicit conversion - niejawna konwersja
+
+    // So classes written in Java, as well as classes written in Scala, all inherit from AnyRef
+
+    //The equality operation == in Scala is designed to be transparent with respect to the type's representation
+
+    NULL
+    //Class Null is the type of the null reference; it is a subclass of every reference class (i.e., every class that
+    //itself inherits from AnyRef so you cannot assign null value to AnyVal objects (i.e. Int)
+
+    NOTHING
+    //Nothing is a subclass of every other class - including NULL
+    //There exists no value to this class
+    //For example there is a function:
+    // def error(message: String): Nothing =
+    // throw new RuntimeException(message)
+    //Which not return normally, it throws an exception instead. Its not even return Unit, just NOTHING.
+
+    UNIT
+    //there is only one value for class Unit: () and its not represented by any object
+    //its something like Java's void
+    //Function that doesn't return anything must have the return type Unit
+    //If it were Nothing then the function could not return a result
+
+    NIL
+    //Represents an empty List of anything of zero length. Its not that it refers to nothing but it refers to List which has no contents.
+
+    //OWN VALUE CLASSES:
+    //-it must have exactlyone parameter
+    //-it must have nothing inside it except defs
+    //-no other class can extend a value class
+    //-value class cannot redefine equals or hashCode
+
+    //example
+    class Dollars(val amount: Int) extends AnyVal {
+        override def toString() = "$" + amount
+    }
+
+
 
 
 
