@@ -631,6 +631,120 @@ object Training extends App{
         override def toString() = "$" + amount
     }
 
+    /**
+      * CHAPTER 12
+      * TRAITS
+      **/
+
+    //Classes can mix in any number of traits
+    //example trait:
+    trait Philosophical {
+        def philosophize() = {
+            println("I consume memory, therefore I am!")
+        }
+    }
+    //this trair does not declare a superclass so like a class it has a default superclass of AnyRef
+
+    //mixing in and overridiing:
+    class Frog extends Philosophical {
+        override def toString = "green"
+        override def philosophize() = {
+            println("It ain't easy being " + toString + "!")
+        }
+    }
+
+    val frog = new Frog
+    frog.philosophize()
+    //trait is also a type
+    val phil: Philosophical = frog
+
+    class Animal
+    trait HasLegs
+
+    class Frog extends Animal with Philosophical with HasLegs {
+        override def toString = "green"
+    }
+
+    //DIFFERENCES WITH CLASS
+    //-u cannot pass parameteres to trait:
+    //trait NoPoint(x: Int, y: Int) //does not compile
+    //-second is whereas in classe invoking method super.toString we know which method would be invkoen
+    //in traits its more complicated
+
+    //ORDERED TRAIT
+    class Rational(n: Int, d: Int) extends Ordered[Rational] { // specify the type
+        // ...
+        def compare(that: Rational) =
+            (this.numer * that.denom) - (that.numer * this.denom)
+    }
+    //This trait is used to compare objects. All we need to do is mixin Ordered[Class] and:
+    //The second thing you need to do is define a compare method for comparing two objects. This method
+    //should compare the receiver, this, with the object passed as an argument to the method. It should return
+    //an integer that is zero if the objects are the same, negative if receiver is less than the argument, and
+    //positive if the receiver is greater than the argument.
+
+
+    //STACKABLE MODIFICATIONS TRAIT
+    abstract class IntQueue {
+        def get(): Int
+        def put(x: Int)
+    }
+    class BasicIntQueue extends IntQueue {
+        private val buf = new ArrayBuffer[Int]
+        def get() = buf.remove(0)
+        def put(x: Int) = { buf += x }
+    }
+    trait Doubling extends IntQueue {
+        abstract override def put(x: Int) = { super.put(2 * x) }
+    }
+    // The first is that it declares a superclass, IntQueue. This declaration means that the trait can only be mixed
+    //into a class that also extends IntQueue. Thus, you can mix Doubling intoBasicIntQueue, but not
+    //into Rational.
+    //The second funny thing is that the trait has a super call on a method declared abstract. Such calls are
+    //illegal for normal classes because they will certainly fail at run time. For a trait, however, such a call
+    //can actually succeed. Since super calls in a trait are dynamically bound, the super call in
+    //trait Doubling will work so long as the trait is mixed in after another trait or class that gives a concrete
+    //definition to the method.
+
+    trait Incrementing extends IntQueue {
+        abstract override def put(x: Int) = { super.put(x + 1) }
+    }
+    trait Filtering extends IntQueue {
+        abstract override def put(x: Int) = {
+            if (x >= 0) super.put(x)
+        }
+    }
+
+    val queue = (new BasicIntQueue
+      with Incrementing with Filtering)
+
+    //The order of mixins is significant
+    //Its define an order which def put is first and which is last
+
+    // Thus, when you write a method that
+    //calls super, that method is definitely modifying the behavior of the superclasses and mixed in traits, not
+    //the other way around.
+    // Multiple inheritance thought experiment
+    val q = new BasicIntQueue with Incrementing with Doubling
+    q.put(42) // which put would be called?
+    //ans: Doubling's put and then << to the left, cause /\ text above
+
+    //WHEN TO USE A TRAIT?
+    //-If the behavior will not be reused, then make it a concrete class. It is not reusable behavior after all.
+    //-If it might be reused in multiple, unrelated classes, make it a trait. Only traits can be mixed into
+    //different parts of the class hierarchy.
+    //-If you want to inherit from it in Java code, use an abstract class. Since traits with code do not have a
+    //close Java analog, it tends to be awkward to inherit from a trait in a Java class.
+    //-If you still do not know, after considering the above, then start by making it as a trait.
+
+
+
+
+
+
+
+
+
 
 
 
