@@ -1,19 +1,19 @@
-object Training extends App{
-  //instead of for in for loops
-  //(1 to 3).foreach(i => (1 to 3).foreach(j => println( i, j)))
+object Training extends App {
+    //instead of for in for loops
+    //(1 to 3).foreach(i => (1 to 3).foreach(j => println( i, j)))
 
-  //1 + 2 invoke method named +, originally its (1).+(2)
-  //the same as in for loop syntax like: for(i <- 1 to 2) equal to for(i <- (1).to(2))
-  //summary: if a method takes only one parameter you can call it without dot or parentheses
-  //println(1 + 2)
-  //println((1).+(2))
+    //1 + 2 invoke method named +, originally its (1).+(2)
+    //the same as in for loop syntax like: for(i <- 1 to 2) equal to for(i <- (1).to(2))
+    //summary: if a method takes only one parameter you can call it without dot or parentheses
+    //println(1 + 2)
+    //println((1).+(2))
 
-  //So greetStrings(i) gets transformed into greetStrings.apply(i)
-  //val arr = new Array[String](3)
-  //arr(0) = "Zero" //equals to arr.update(0, "Zero")
-  //print(arr(0)) //equals to print(arr.apply(0))
+    //So greetStrings(i) gets transformed into greetStrings.apply(i)
+    //val arr = new Array[String](3)
+    //arr(0) = "Zero" //equals to arr.update(0, "Zero")
+    //print(arr(0)) //equals to print(arr.apply(0))
 
-  /*
+    /*
   val oneTwoThreeFour = oneTwo ::: threeFour
   println(oneTwo + " and " + threeFour + " were not mutated.")
   println("Thus, " + oneTwoThreeFour + " is a new list.")
@@ -66,7 +66,7 @@ object Training extends App{
 
    */
 
-  /*
+    /*
   // oki tutaj jest cos takiego, ze przy val immutable nie mozna dac += a przy val mutable mozna
 
   import scala.collection.immutable
@@ -75,17 +75,17 @@ object Training extends App{
   movieSet += "Shrek"
   println(movieSet)*/
 
-  //https://4programmers.net/Forum/Inne/333704-scala_niezrozumienie_pewnej_kwestii_w_kolekcjach_set
+    //https://4programmers.net/Forum/Inne/333704-scala_niezrozumienie_pewnej_kwestii_w_kolekcjach_set
 
-  /**
-    Ogolnie to kwestia setow i hashsetow sie troche wyjasnila na tym forum, .getClass zwraca Set$Set4 na <5 a >=5 HashSet
-    Kiedy indziej ogarne
+    /**
+      * Ogolnie to kwestia setow i hashsetow sie troche wyjasnila na tym forum, .getClass zwraca Set$Set4 na <5 a >=5 HashSet
+      * Kiedy indziej ogarne
+      **
+      *Mozna powiedziec ze Set to taki glowny typ, a HashSet czy Set$Set3 to wynik metody .toString wywalonej na obiekcie typu Set
+      * Nie wiem do konca o co dokladnie chodzi, pewnie ogarne za jakis czas
+      */
 
-    Mozna powiedziec ze Set to taki glowny typ, a HashSet czy Set$Set3 to wynik metody .toString wywalonej na obiekcie typu Set
-    Nie wiem do konca o co dokladnie chodzi, pewnie ogarne za jakis czas
-  */
-
-  /*
+    /*
   import scala.io.Source
 
    def widthOfLength(s: String) = s.length.toString.length
@@ -109,13 +109,13 @@ object Training extends App{
   Console.err.println("Please enter filename")
     */
 
-  //PROGRAMOWANIE FUNKCYJNE:
-  //Prefer vals, immutable objects, and methods without side effects.
+    //PROGRAMOWANIE FUNKCYJNE:
+    //Prefer vals, immutable objects, and methods without side effects.
 
-  /**
-    * CHAPTER 4
-    **/
-/*
+    /**
+      * CHAPTER 4
+      **/
+    /*
   //public is default scala access level in fields in classes
   //scala function parameters are vals !!
   //A method that is executed only for its side effects is known as a procedure
@@ -163,12 +163,12 @@ object Training extends App{
 
     //adding "extend App" trait u dont need to write a main method in astandalone object to run your app
 */
-  /**
-    * CHAPTER 5
-    **/
+    /**
+      * CHAPTER 5
+      **/
 
     //symbol value
-  /*val s = 'symbol
+    /*val s = 'symbol
   s.name
 
   //mozna pisac w unicode
@@ -270,12 +270,12 @@ object Training extends App{
 
    */
 
-  /**
-    * CHAPTER 7
-    * BUILD-IN CONTROL STRUCTURES
-    **/
+    /**
+      * CHAPTER 7
+      * BUILD-IN CONTROL STRUCTURES
+      **/
 
-  /*val value =
+    /*val value =
     if(1==1) "test"
     else "passed"
   //if returns a value
@@ -370,12 +370,12 @@ object Training extends App{
   //Podsumowując ten rozdzial, troche funkcyjnego programowania, w którym chodzi o to zeby nie miec efektow ubocznych jak println,
   //zeby funkje zwracaly cos, zeby byly podzielone na helper functions, ktore tworza kod bardziej czytelnym, */
 
-  /**
-    * CHAPTER 8
-    * FUNCTIONS AND CLOSUER
-    **/
+    /**
+      * CHAPTER 8
+      * FUNCTIONS AND CLOSUER
+      **/
 
-   /*//Functional programming style: programs should be decomposed into many small functions that each do a well-defined task
+    /*//Functional programming style: programs should be decomposed into many small functions that each do a well-defined task
     //So the best way to write a large ammount of small functions is to write them inside other functions (local functions)
     //Local functions cac access wariable of it's enclosing functions:
   import scala.io.Source
@@ -567,12 +567,12 @@ object Training extends App{
   //roznica wtedy jest taka, ze 5 > 3 zyielduje wynik i z takim wynikiem wywoła funkcje byNameAssert, natomiast
   //gdy uzyjemy formy => Boolean, 5 > 3 wywola sie dopiero w linijcie !predicate()*/
 
-  /**
-    * CHAPTER 10
-    * Composition and Inheritance
-    **/
+    /**
+      * CHAPTER 10
+      * Composition and Inheritance
+      **/
 
-  //Composition means one class holds a reference to another, using the referenced class to help it fulfill its mission.
+    //Composition means one class holds a reference to another, using the referenced class to help it fulfill its mission.
     // Inheritance is the superclass/subclass relationship.
     //
     /**
@@ -583,11 +583,19 @@ object Training extends App{
     //just as Any is a superclass of every other class, Nothing is a subclass of every other class
     //Any contains:
     final def ==(that: Any): Boolean
+
     final def !=(that: Any): Boolean
+
     def equals(that: Any): Boolean
-    def ##: Int
+
+    def ##:
+
+    Int
+
     def hashCode: Int
+
     def toString: String
+
     // Unit = ()
     //ll value classes are subtypes of scala.AnyVal, but they do not
     //subclass each other. Instead there are implicit conversions between different value class types. For
@@ -618,6 +626,7 @@ object Training extends App{
     //If it were Nothing then the function could not return a result
 
     NIL
+
     //Represents an empty List of anything of zero length. Its not that it refers to nothing but it refers to List which has no contents.
 
     //OWN VALUE CLASSES:
@@ -643,11 +652,13 @@ object Training extends App{
             println("I consume memory, therefore I am!")
         }
     }
+
     //this trair does not declare a superclass so like a class it has a default superclass of AnyRef
 
     //mixing in and overridiing:
     class Frog extends Philosophical {
         override def toString = "green"
+
         override def philosophize() = {
             println("It ain't easy being " + toString + "!")
         }
@@ -659,6 +670,7 @@ object Training extends App{
     val phil: Philosophical = frog
 
     class Animal
+
     trait HasLegs
 
     class Frog extends Animal with Philosophical with HasLegs {
@@ -677,6 +689,7 @@ object Training extends App{
         def compare(that: Rational) =
             (this.numer * that.denom) - (that.numer * this.denom)
     }
+
     //This trait is used to compare objects. All we need to do is mixin Ordered[Class] and:
     //The second thing you need to do is define a compare method for comparing two objects. This method
     //should compare the receiver, this, with the object passed as an argument to the method. It should return
@@ -687,16 +700,26 @@ object Training extends App{
     //STACKABLE MODIFICATIONS TRAIT
     abstract class IntQueue {
         def get(): Int
+
         def put(x: Int)
     }
+
     class BasicIntQueue extends IntQueue {
         private val buf = new ArrayBuffer[Int]
+
         def get() = buf.remove(0)
-        def put(x: Int) = { buf += x }
+
+        def put(x: Int) = {
+            buf += x
+        }
     }
+
     trait Doubling extends IntQueue {
-        abstract override def put(x: Int) = { super.put(2 * x) }
+        abstract override def put(x: Int) = {
+            super.put(2 * x)
+        }
     }
+
     // The first is that it declares a superclass, IntQueue. This declaration means that the trait can only be mixed
     //into a class that also extends IntQueue. Thus, you can mix Doubling intoBasicIntQueue, but not
     //into Rational.
@@ -707,8 +730,11 @@ object Training extends App{
     //definition to the method.
 
     trait Incrementing extends IntQueue {
-        abstract override def put(x: Int) = { super.put(x + 1) }
+        abstract override def put(x: Int) = {
+            super.put(x + 1)
+        }
     }
+
     trait Filtering extends IntQueue {
         abstract override def put(x: Int) = {
             if (x >= 0) super.put(x)
@@ -737,10 +763,101 @@ object Training extends App{
     //close Java analog, it tends to be awkward to inherit from a trait in a Java class.
     //-If you still do not know, after considering the above, then start by making it as a trait.
 
+    /**
+      * CHAPTER 13
+      * IMPORTS AND PACKAGES
+      **/
 
 
+    // In file launch.scala
+    package launch {
+        class Booster3
+    }
 
+    // In file bobsrockets.scala
+    package bobsrockets {
+        package navigation {
+            package launch {
+                class Booster1
+            }
+            class MissionControl {
+                val booster1 = new launch.Booster1
+                val booster2 = new bobsrockets.launch.Booster2
+                val booster3 = new _root_.launch.Booster3
+            }
+        }
+        package launch {
+            class Booster2
+        }
+    }
+///////////////////////////////////////////////////////
+    package bobsdelights
 
+    abstract class Fruit(
+                          val name: String,
+                          val color: String
+                        )
+
+    object Fruits {
+        object Apple extends Fruit("apple", "red"){
+            //??????
+        }
+        object Orange extends Fruit("orange", "orange")
+        object Pear extends Fruit("pear", "yellowish")
+        val menu = List(Apple, Orange, Pear)
+    }
+
+    // easy access to Fruit
+    import bobsdelights.Fruit
+
+    // easy access to all members of bobsdelights
+    import bobsdelights._
+
+    // easy access to all members of Fruits
+    import bobsdelights.Fruits._
+
+    //Its also possible
+    def showFruit(fruit: Fruit) = {
+        import fruit._
+        println(name + "s are " + color)
+    }
+    //There is no rule that import must be at the begginign of a file
+
+    //SCALA'S FLEXIBLE IMPORTS
+    //-may appear anywhere
+    //• may refer to objects (singleton or regular) in addition to packages
+    //• let you rename and hide some of the imported members
+
+//does not import Apple from Fruits,
+    import Fruits.{Apple => _, _}
+
+    //three implicit import in Scala
+    import java.lang._ // everything in the java.lang package
+    import scala._ // everything in the scala package
+    import Predef._ // everything in the Predef object
+
+    //you can writeList instead of scala.List, for instance.
+
+    package bobsrockets
+
+    package navigation {
+        private[bobsrockets] class Navigator {
+            protected[navigation] def useStarChart() = {}
+            class LegOfJourney {
+                private[Navigator] val distance = 100
+            }
+            private[this] var speed = 200
+        }
+    }
+    package launch {
+        import navigation._
+        object Vehicle {
+            private[launch] val guide = new Navigator
+        }
+    }
+    //Access modifiers in Scala can be augmented with qualifiers. A modifier of the
+    //form private[X]or protected[X] means that access is private or protected "up to" X, where X designates
+    //some enclosing package, class or singleton object.
 
 
 
