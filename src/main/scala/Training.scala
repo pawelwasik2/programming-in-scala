@@ -859,6 +859,51 @@ object Training extends App {
     //form private[X]or protected[X] means that access is private or protected "up to" X, where X designates
     //some enclosing package, class or singleton object.
 
+  // A class shares all its access rights with its companion object and vice versa
+
+  package object bobsdelights {
+    def showFruit(fruit: Fruit) = {
+      import fruit._
+      println(name + "s are " + color)
+    }
+  }
+
+  // In file PrintMenu.scala
+  package printmenu
+  import bobsdelights.Fruits
+  import bobsdelights.showFruit
+
+  object PrintMenu {
+    def main(args: Array[String]) = {
+      for (fruit <- Fruits.menu) {
+        showFruit(fruit)
+      }
+    }
+  }
+
+  //package object
+  // In file bobsdelights/package.scala
+  package object bobsdelights {
+    def showFruit(fruit: Fruit) = {
+      import fruit._
+      println(name + "s are " + color)
+    }
+  }
+
+  // In file PrintMenu.scala
+  package printmenu
+  import bobsdelights.Fruits
+  import bobsdelights.showFruit
+
+  object PrintMenu {
+    def main(args: Array[String]) = {
+      for (fruit <- Fruits.menu) {
+        showFruit(fruit)
+      }
+    }
+  }
+
+
 
 
 
